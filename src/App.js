@@ -4,7 +4,7 @@ import './App.css';
 
 class App extends Component {
   UNSAFE_componentWillMount() {
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', () => {
       if (!Notification) {
         alert('Desktop notifications not available in your browser. Try Chromium.'); 
         return;
@@ -19,6 +19,7 @@ class App extends Component {
     if (Notification.permission !== "granted")
       Notification.requestPermission();
     else {
+      const myAudio = new Audio("sound/unconvinced.mp3");
       var notification = new Notification('Notification title', {
         icon: 'http://localhost:3000/favicon.ico',
         body: "Hey there! You've been notified!",
@@ -27,6 +28,7 @@ class App extends Component {
       notification.onclick = function () {
         window.location.href = '/';     
       };
+      myAudio.play();
   
     }
   
